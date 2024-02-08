@@ -47,18 +47,18 @@ heading.addEventListener('transitionend',()=>{
     if(head[head_index].id === head_first_clone.id){
         heading.style.transition='none';
         info.style.transition='none';
-        head_index = 1;
+        head_index = 0;
         heading.style.transform = `translateY(-${head_index*head_height}px)`;
         info.style.transform = `translateY(-${head_index*para_height}px)`;
-        console.log('success' + head[head_index].id);
+        // console.log('success' + head[head_index].id);
     }
     
     if(head[head_index].id === head_last_clone.id){
         heading.style.transition='none';
-        head_index = 1;
+        head_index = 0;
         // heading.cloneNode(true);
         heading.style.transform = `translateY(-${head_index*head_height}px)`;
-        console.log('success2' + head[head_index].id);
+        // console.log('success2' + head[head_index].id);
     }
 })
 
@@ -70,13 +70,11 @@ const head_changer_nxt = () => {
     heading.style.transform = `translateY(-${head_index*head_height}px)`;
     info.style.transform = `translateY(-${head_index*para_height}px)`;
     slider.style.transform = `translateX(-${head_index*slide}px)`;
-    cards[index-1].classList.remove('small');
-    cards[index].classList.add('big');
+    cards[head_index-1].classList.add('big');
     slider.style.transition = `1s`;
     heading.style.transition = `1s`;
     info.style.transition = `1s`;
     // console.log(head.length)
-    console.log(head_index)
 }
 
 const head_changer_prv = () => {
@@ -86,13 +84,16 @@ const head_changer_prv = () => {
     heading.style.transform = `translateY(-${head_index*head_height}px)`;
     info.style.transform = `translateY(-${head_index*para_height}px)`;
     slider.style.transform = `translateX(-${head_index*slide}px)`;
-    cards[index-1].classList.remove('big');
-    cards[index].classList.add('small');
+    console.log(head_index)
+    if(cards[head_index].classList[1] == "big"){
+        cards[head_index+1].classList.remove('big');
+        cards[head_index].classList.add('small');
+    }
+    console.log(cards[index].classList[1]=='big')
     slider.style.transition = `1s`;
     heading.style.transition = `1s`;
     info.style.transition = `1s`;
     // console.log(head.length)
-    console.log(head_index)
 }
 
 next_btn.addEventListener('click',()=>{

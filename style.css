@@ -137,6 +137,7 @@ section {
 
 .big {
     transform: scaleY(1.2);
+    opacity: 0;
     transition: 1s;
 }
 
