@@ -111,6 +111,8 @@ section {
 
 .slide_container{
     width: 50%;
+    /* overflow: hidden; */
+    padding: 2rem  0;
 }
 
 .card_container {
@@ -128,21 +130,7 @@ section {
 }
 
 #cl{
-    transform: scaleY(1.2);
-}
-
-#cl img{
-    transform: scale(1.2);
-}
-
-.big {
-    transform: scaleY(1.2);
-    transition: 1s;
-}
-
-.small{
-    transform: scale(1);
-    transition: 1s;
+    visibility: hidden;
 }
 
 .card img{

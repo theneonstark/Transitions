@@ -47,17 +47,25 @@ heading.addEventListener('transitionend',()=>{
     if(head[head_index].id === head_first_clone.id){
         heading.style.transition='none';
         info.style.transition='none';
+        slider.style.transition = 'none';
         head_index = 1;
+        if(cards[head_index - 1].style.opacity == '0'){
+            cards[head_index - 1].style.opacity = '1' 
+            console.log('time')
+        }
         heading.style.transform = `translateY(-${head_index*head_height}px)`;
         info.style.transform = `translateY(-${head_index*para_height}px)`;
+        slider.style.transform = `translateX(-${head_index*slide}px)`;
         console.log('success' + head[head_index].id);
     }
     
     if(head[head_index].id === head_last_clone.id){
         heading.style.transition='none';
         head_index = 1;
-        // heading.cloneNode(true);
         heading.style.transform = `translateY(-${head_index*head_height}px)`;
+        cards[head_index].style.transform = `scaleY(1.0)`;
+        info.style.transition='none';
+        slider.style.transition = 'none';
         console.log('success2' + head[head_index].id);
     }
 })
@@ -70,29 +78,31 @@ const head_changer_nxt = () => {
     heading.style.transform = `translateY(-${head_index*head_height}px)`;
     info.style.transform = `translateY(-${head_index*para_height}px)`;
     slider.style.transform = `translateX(-${head_index*slide}px)`;
-    cards[index-1].classList.remove('small');
-    cards[index].classList.add('big');
+    cards[head_index].style.transform = `scaleY(1.2)`;
+    cards[head_index - 1].style.opacity = '0';
+    cards[head_index - 1].style.transform = `scaleY(1.0)`;
+    cards[head_index].style.transition = `0.5s`;
     slider.style.transition = `1s`;
     heading.style.transition = `1s`;
     info.style.transition = `1s`;
     // console.log(head.length)
-    console.log(head_index)
+    console.log(head_index + ' incr')
 }
 
 const head_changer_prv = () => {
     let cards = document.querySelectorAll('.cards');
-    if(head_index <= 0) return;
+    if(head_index <= 1) return;
     head_index--;
     heading.style.transform = `translateY(-${head_index*head_height}px)`;
     info.style.transform = `translateY(-${head_index*para_height}px)`;
     slider.style.transform = `translateX(-${head_index*slide}px)`;
-    cards[index-1].classList.remove('big');
-    cards[index].classList.add('small');
+    cards[head_index].style.transform = `scaleY(1.2)`;
+    cards[head_index].style.opacity = '1';
+    console.log(head_index + 1 +  ' dec')
     slider.style.transition = `1s`;
     heading.style.transition = `1s`;
     info.style.transition = `1s`;
     // console.log(head.length)
-    console.log(head_index)
 }
 
 next_btn.addEventListener('click',()=>{
@@ -108,3 +118,4 @@ next_btn.addEventListener('click',()=>{
 prev_btn.addEventListener('click',()=>{
     head_changer_prv();
 })
+
